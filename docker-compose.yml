@@ -1,0 +1,12 @@
+# The Eureka server as a container, built from the Dockerfile (see Makefile: `make docker-up`).
+# It has no infrastructure of its own. The host port defaults to 8761, where the services look for it;
+# the root Makefile starts Eureka as a jar on the same port, so run one or the other.
+name: service-discovery
+
+services:
+  app:
+    build: .
+    image: service-discovery
+    container_name: service-discovery
+    ports:
+      - "${SERVER_PORT:-8761}:8761"
